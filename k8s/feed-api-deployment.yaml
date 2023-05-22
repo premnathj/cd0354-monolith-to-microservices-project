@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: udagram-api-feed
-        image: premnathj/udagram-api-feed
+        image: premnathj/udagram-api-feed:latest
         ports:
         - containerPort: 8080
         imagePullPolicy: Always  
@@ -30,48 +30,48 @@ spec:
         env:
         - name: POSTGRES_USERNAME
           valueFrom:
-            secretKeyRef:
-              name: env-secrets
+            configMapKeyRef:
+              name: api-config
               key: POSTGRES_USERNAME 
         - name: POSTGRES_PASSWORD
           valueFrom:
-            secretKeyRef:
-              name: env-secrets
+            configMapKeyRef:
+              name: api-config
               key: POSTGRES_PASSWORD
         - name: POSTGRES_DB
           valueFrom:
             configMapKeyRef:
-              name: env-config
+              name: api-config
               key: POSTGRES_DB
         - name: POSTGRES_HOST
           valueFrom:
             configMapKeyRef:
-              name: env-config
+              name: api-config
               key: POSTGRES_HOST
         - name: AWS_REGION
           valueFrom:
             configMapKeyRef:
-              name: env-config
+              name: api-config
               key: AWS_REGION
         - name: AWS_PROFILE
           valueFrom:
             configMapKeyRef:
-              name: env-config
+              name: api-config
               key: AWS_PROFILE
         - name: AWS_BUCKET
           valueFrom:
             configMapKeyRef:
-              name: env-config
+              name: api-config
               key: AWS_BUCKET
         - name: URL
           valueFrom:
             configMapKeyRef:
-              name: env-config
+              name: api-config
               key: URL
         - name: JWT_SECRET
           valueFrom:
             configMapKeyRef:
-              name: env-config
+              name: api-config
               key: JWT_SECRET
         volumeMounts:
         - name: aws-secret
